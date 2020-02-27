@@ -1,1 +1,0 @@
-# OpenAcademy-project
