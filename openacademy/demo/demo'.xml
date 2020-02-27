@@ -1,0 +1,13 @@
+<odoo>
+
+        <record id="padilla" model="openacademy.teachers">
+            <field name="name">Diana Padilla</field>
+        </record>
+        <record id="carroll" model="openacademy.teachers">
+            <field name="name">Jody Carroll</field>
+        </record>
+        <record id="vaughn" model="openacademy.teachers">
+            <field name="name">Lester Vaughn</field>
+        </record>
+
+</odoo>
