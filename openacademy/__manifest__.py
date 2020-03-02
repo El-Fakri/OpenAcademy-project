@@ -19,7 +19,7 @@
     'application': "True",
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'board', 'website','website_sale'],
+    'depends': ['base', 'board', 'website''website_sale'],
 
     # always loaded
     'data': [
@@ -34,7 +34,7 @@
         'templates/templates.xml',
         "demo/demo'.xml",
         'views/teacher.xml',
-        #'data/data.xml',
+        'data/data.xml',
 
     ],
     # only loaded in demonstration mode

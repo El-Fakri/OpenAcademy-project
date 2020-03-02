@@ -1,95 +1,46 @@
 # -*- coding: utf-8 -*-
 from odoo import http
 
+
+
+# def do_before():
+#     print("test")
+
+# class Openacademy(http.Controller):
+#     @http.route('/openacademy/openacademy/', auth='public')
+#     def index(self, **kw):
+# #         return "Hello, Mahdi"
+# #return ci-dessous permet de passer une liste des profs au template
+# #         return http.request.render('openacademy.index', {
+# #             'teachers': ["Diana Padilla", "Jody Caroll", "Lester Vaughn"],
+# #         })
+#         Teachers = http.request.env['openacademy.teachers']
+#         return http.request.render('openacademy.index', {
+#             'teachers': Teachers.search([])
+#         })
+
+
 class Openacademy(http.Controller):
-    @http.route(['/my/', '/my/home/'], auth='user', website=True)
+    @http.route('/openacademy/openacademy/', auth='public', website=True)
     def index(self, **kw):
 
-        # instructors = http.request.env['res.partner'].sudo() # ici si on fait sudo() on va recevoir tt les res.partner
-        id_user = http.request.env.user.partner_id.id
-        instructor = http.request.env['res.partner'].search([('id', '=', id_user)])
-        name_instructor = instructor.name
-        num_sess_instructor = instructor.num_sessions
-
+        Teachers = http.request.env['openacademy.teachers'] # ici http.request.env['openacademy.teachers'] pointe sur objet teacher
         return http.request.render('openacademy.index', {
-            # 'instructors': instructors.search([])
-            # 'instructors': instructors,
-            'name': name_instructor,
-            'nbr_sess': num_sess_instructor,
-            'slugg': id_user,
-
+            'teachers': Teachers.search([])
         })
+    #si on passe l'url : /openacademy/openacademy/mahdi , il affichera mahdi en <h1>
+    # @http.route('/openacademy/openacademy/<name>/', auth='public', website=True)
+    # def teacher(self, name):
+    #     return '<h1>{}</h1>'.format(name)
 
-    # @http.route(['/my/<model("res.partner"):instructor>/', '/my/home/<model("res.partner"):instructor>/'], auth='user', website=True)
-    @http.route(['/my/home/<model("res.partner"):instructor>/'], auth='user', website=True)
-    def instructor(self, instructor):
+    # si on passe l'url : /openacademy/openacademy/2 , il affichera 2 en <h1> avec son type qui est int
+    # @http.route('/openacademy/openacademy/<int:id>/', auth='public', website=True)
+    # def teacher(self, id):
+    #     return '<h1>{} ({})</h1>'.format(id, type(id).__name__)
 
-        sessions = list(instructor.sessions)
-        instructor_id = sessions[0].instructor_id
 
-        return http.request.render('openacademy.sessions', {
-            'session': sessions,
-            'instructor_id': instructor_id
-        })
-
-    # @http.route(['/my/session/<model("openacademy.session"):session>/', '/my/home/session/<model("openacademy.session"):session>/'], auth='user', website=True)
-    @http.route(['/my/home/session/<model("openacademy.session"):session>/'], auth='user', website=True)
-    def session(self, session):
-        return http.request.render('openacademy.sessionsForm', {
-            'session': session
-        })
-
-    @http.route(['/my/home/session/edit/<model("openacademy.session"):session>/'], auth='user', website=True)
-    def session_edit(self, session):
-
-        return http.request.render('openacademy.sessionsEdit', {
-            'session': session
-        })
-
-    @http.route(['/my/home/session/edit/done/'], auth='user', website=True, methods=['POST'], csrf=False)
-    def session_edit_done(self, **kw):
-
-        # print(kw['InstId'])
-        # print(kw['duration'])
-        id_sess = kw['SessId']
-        session = http.request.env['openacademy.session'].search([('id', '=', id_sess)])
-        session.start_date = kw['StartDate']
-        session.seats = kw['seats']
-        session.end_date = kw['EndDate']
-
-        return http.request.render('openacademy.sessionsForm', {
-            'session': session
-        })
-
-    @http.route(['/my/home/session/add/<model("res.partner"):instructor>/'], auth='user', website=True)
-    def session_add(self, instructor):
-
-        courses = http.request.env['openacademy.course'].search([])
-
-        return http.request.render('openacademy.sessionsAdd', {
-            'instructor': instructor,
-            'courses': courses,
-        })
-
-    @http.route(['/my/home/session/add/done/'], auth='user', website=True, methods=['POST'], csrf=False)
-    def session_add_done(self, **kw):
-        # print(kw['InstId'])
-        # print(kw['SessId'])
-        id_instructor = kw['InstId']
-        id_course = int(kw['CourseId'])
-        instructor = http.request.env['res.partner'].search([('id', '=', id_instructor)])
-        start_date = kw['StartDate']
-        name = kw['name']
-        seats = kw['seats']
-        end_date = kw['EndDate']
-
-        http.request.env['openacademy.session'].create({'start_date': start_date,
-                                                        'seats': seats, 'end_date': end_date, 'name': name,
-                                                        'course_id': id_course ,'instructor_id': instructor.id})
-        sessions = list(instructor.sessions)
-        instructor_id = sessions[0].instructor_id
-
-        return http.request.render('openacademy.sessions', {
-            'session': sessions,
-            'instructor_id': instructor_id
+    @http.route('/openacademy/openacademy/<model("openacademy.teachers"):teacher>/', auth='public', website=True)
+    def teacher(self, teacher):
+        return http.request.render('openacademy.biography', {
+            'person': teacher
         })

@@ -1,295 +1,24 @@
 <odoo>
 
 
+<!--    <template id="index">-->
+<!--        <title>Academy</title>-->
+<!--        <t t-foreach="teachers" t-as="teacher">-->
+<!--&lt;!&ndash;          <p><t t-esc="teacher"/></p>&ndash;&gt;-->
+<!--            <p><t t-esc="teacher.id"/> <t t-esc="teacher.name"/></p>-->
+<!--        </t>-->
+<!--    </template>-->
 
-    <template id="index"  >
+    <template id="index">
         <t t-call="website.layout">
             <t t-set="title">Academy</t>
-            <main style="background-color: #edf0f5;">
-                <div class="oe_structure">
-                    <div class="container">
-                        <div id="wrap" class="o_portal_wrap">
-                            <div class="container mb64">
-                                <div class="row justify-content-between mt-4">
-                                    <div class="col-12 col-md col-lg-6">
-                                        <div class="o_portal_my_home">
-                                            <div class="oe_structure" id="oe_structure_portal_my_home_1" data-oe-model="ir.ui.view" data-oe-id="962" data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/div[1]/div[1]">
-                                            </div>
-                                                <h3 data-oe-model="ir.ui.view" data-oe-id="962" data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/div[1]/h3[1]">Documents</h3>
-                                                <div class="o_portal_docs list-group">
-                                                    <a class="list-group-item list-group-item-action d-flex align-items-center justify-content-between" t-attf-href="/my/home/{{ slugg }}" title="Sessions">
-                                                        Sessions
-                                                    <span class="badge badge-secondary badge-pill"> <t t-esc="nbr_sess"/></span>
-                                                    </a>
-                                                    <!--                                        </t>-->
-                                                </div>
-                                            </div>
-                                                    <!--jusqu'au ici -->
-                                            <div class="oe_structure" id="oe_structure_portal_my_home_2" data-oe-model="ir.ui.view" data-oe-id="962" data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/div[2]">
-                                            </div>
-                                        </div>
-                                        <div id="o_my_sidebar" class="col-12 col-md col-lg-4 col-xl-3 o_my_sidebar">
-                                            <div class="o_portal_my_details">
-                                                <h4 data-oe-model="ir.ui.view" data-oe-id="960" data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/div[2]/div[1]/t[1]/div[1]/div[2]/div[2]/h4[1]">Details <a role="button" href="/my/account" class="btn btn-sm btn-link"><i class="fa fa-pencil"></i> Edit</a></h4>
-                                                <hr class="mt-1 mb-0" data-oe-model="ir.ui.view" data-oe-id="960" data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/div[2]/div[1]/t[1]/div[1]/div[2]/div[2]/hr[1]"/>
-                                                    <div data-oe-model="res.users" data-oe-id="2" data-oe-field="partner_id" data-oe-type="contact" data-oe-expression="user_id.partner_id" data-oe-many2one-id="3" data-oe-many2one-model="res.partner" data-oe-contact-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;email&quot;, &quot;phone&quot;, &quot;address&quot;, &quot;name&quot;], &quot;tagName&quot;: &quot;div&quot;, &quot;expression&quot;: &quot;user_id.partner_id&quot;, &quot;type&quot;: &quot;contact&quot;, &quot;inherit_branding&quot;: true, &quot;translate&quot;: false}">
-                                                        <address class="mb-0" itemscope="itemscope" >
-                                                            <div>
-                                                                <span itemprop="name">YourCompany, Mitchell Admin</span>
-                                                            </div>
-                                                            <div itemprop="address" itemscope="itemscope" >
-                                                                <div class="d-flex align-items-baseline">
-                                                                    <i class="fa fa-map-marker fa-fw" role="img" aria-label="Address" title="Address"> </i>
-                                                                    <div class="w-100" itemprop="streetAddress">
-                                                                        215 Vine St<br/>Scranton PA 18503<br/>United States
-                                                                    </div>
-                                                                </div>
-                                                                <div>
-                                                                    <i class="fa fa-phone fa-fw" role="img" aria-label="Phone" title="Phone"> </i>
-                                                                    <span class="o_force_ltr" itemprop="telephone">+1 555-555-5555</span>
-                                                                </div>
-                                                                <div>
-                                                                    <i class="fa fa-envelope fa-fw" role="img" aria-label="Email" title="Email"> </i>
-                                                                    <span itemprop="email">admin@yourcompany.example.com</span>
-                                                                </div>
-                                                            </div>
-                                                        </address>
-                                                    </div>
-                                                    <div class="manage_payment_method mt16" data-oe-model="ir.ui.view" data-oe-id="2710" data-oe-field="arch" data-oe-xpath="/data/xpath/t/div[1]">
-                                                        <a href="/my/payment_method">Manage payment methods</a>
-                                                    </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <br/>
-                            <br/>
-                            <br/>
-                            <br/>
-                            <br/>
-                            <br/>
-                    </div>
-                </div>
-            </main>
-        </t>
-    </template>
-
-
-    <template id="sessions">
-        <t t-call="website.layout" >
-        <t t-set="title">Academy</t>
-        <div class="oe_structure" style="background-color: #edf0f5;">
-            <div class="container">
-                <br/>
-                <div id="wrap" class="o_portal_wrap">
-                    <div class="container mb64">
-                        <nav class="navbar navbar-light navbar-expand-lg border py-0 mb-2 o_portal_navbar  mt-3 rounded">
-                            <ol class="o_portal_submenu breadcrumb mb-0 py-2 flex-grow-1">
-                                <li class="breadcrumb-item" data-oe-model="ir.ui.view" data-oe-id="958" data-oe-field="arch" data-oe-xpath="/t[1]/ol[1]/li[1]">
-                                    <a href="/my/home" aria-label="Home" title="Home">
-                                        <i class="fa fa-home"></i>
-                                    </a>
-                                </li>
-                                <li class="breadcrumb-item active ">
-                                Sessions
-                                </li>
-                            </ol>
-                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#o_portal_navbar_content" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle filters" data-oe-model="ir.ui.view" data-oe-id="966" data-oe-field="arch" data-oe-xpath="/t[1]/nav[1]/button[1]">
-                                <span class="navbar-toggler-icon small"></span>
-                            </button>
-                            <div class="collapse navbar-collapse" id="o_portal_navbar_content">
-                                <div class="nav flex-column flex-lg-row ml-auto p-0 mb-3 mb-lg-0 mt-1 mt-lg-0">
-                                    <div class="form-inline">
-                                    </div>
-                                </div>
-                                <div class="col flex-grow-0">
-                                    <div class="record_pager btn-group" role="group">
-                                           <a data-oe-model="ir.ui.view" data-oe-id="2096" data-oe-field="arch" data-oe-xpath="/data/xpath/li[1]/a[1]" t-attf-href="/my/home/session/add/{{slug(instructor_id)}}">
-                                               <span     class=" badge badge-pill badge-info">  ADD </span>
-                                           </a>
-                                    </div>
-                                </div>
-                                <form class="form-inline o_portal_search_panel ml-lg-4">
-                                    <div class="input-group input-group-sm w-100">
-                                        <div class="input-group-prepend">
-                                            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" data-oe-model="ir.ui.view" data-oe-id="966" data-oe-field="arch" data-oe-xpath="/t[1]/nav[1]/div[1]/form[1]/div[1]/div[1]/button[1]">
-                                            </button>
-                                            <div class="dropdown-menu" role="menu">
-                                                <a href="#content" class="dropdown-item active">
-                                                <span>Search
-                                                    <span class="nolabel"> (in Sessions)</span>
-                                                </span>
-                                                 </a>
-                                            </div>
-                                        </div>
-                                        <input type="text" class="form-control form-control-sm" placeholder="Search" name="search" data-oe-model="ir.ui.view" data-oe-id="966" data-oe-field="arch" data-oe-xpath="/t[1]/nav[1]/div[1]/form[1]/div[1]/input[1]"/>
-                                         <span class="input-group-append" data-oe-model="ir.ui.view" data-oe-id="966" data-oe-field="arch" data-oe-xpath="/t[1]/nav[1]/div[1]/form[1]/div[1]/span[1]">
-                                            <button class="btn btn-secondary search-submit" type="button">
-                                                <span class="fa fa-search"></span>
-                                            </button>
-                                         </span>
-                                    </div>
-                                </form>
-                            </div>
-                        </nav>
-                        <div class="table-responsive border rounded border-top-0 ">
-                            <table class="table rounded mb-0 bg-white o_portal_my_doc_table">
-                                <thead data-oe-model="ir.ui.view" data-oe-id="2098" data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/t[3]/thead[1]">
-                                    <tr>
-                                        <th class="text-right">ID</th>
-                                        <th class="w-100">Session's Name</th>
-                                        <th></th>
-                                        <th class="text-center">Course</th>
-                                    </tr>
-                                </thead>
-                                <t t-foreach="session" t-as="tmp">
-    <!--                                    <p><a t-attf-href="/my/home/session/{{ slug(tmp) }}">-->
-    <!--                                      <t t-esc="tmp.name"/></a>-->
-    <!--                                    </p>-->
-                                    <tr>
-                                        <td class="text-right">
-                                            <a t-attf-href="/my/home/session/{{  slug(tmp)  }}">
-                                                <small data-oe-model="ir.ui.view" data-oe-id="2098" data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/t[3]/t[1]/tr[1]/td[1]/a[1]/small[1]">#</small>
-                                                <t t-esc="tmp.id"/>
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <a t-attf-href="/my/home/session/{{  slug(tmp)  }}">
-                                                <span data-oe-model="openacademy.sessions" data-oe-id="3" data-oe-field="name" data-oe-type="char" data-oe-expression="session.name">
-                                                    <t t-esc="tmp.name"/>
-                                                </span>
-                                            </a>
-                                        </td>
-                                        <td data-oe-model="ir.ui.view" data-oe-id="2098" data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/t[3]/t[1]/tr[1]/td[3]">
-                                        </td>
-                                        <td class="text-center">
-                                            <span data-oe-model="openacademy.sessions" data-oe-id="3" data-oe-field="name" data-oe-type="char" data-oe-expression="session.course_id" class="badge badge-pill badge-info"><t t-esc="tmp.course_id.name"/>
-                                            </span>
-                                        </td>
-                                    </tr>
-                                </t>
-                            </table>
-                        </div>
-                        <br/>
-                        <br/>
-                        <br/>
-                        <br/>
-                        <br/>
-                    </div>
-                </div>
-            </div>
-        </div >
-        </t>
-    </template>
-
-
-    <template id="sessionsForm">
-        <t t-call="website.layout" >
-            <t t-set="title">Academy</t>
-            <div class="oe_structure" style="background-color: #edf0f5;">
+            <div class="oe_structure">
                 <div class="container">
-                    <br/>
-                    <t t-foreach="session" t-as="tmp">
-                        <div class="o_portal container mt-3">
-                            <div class="row align-items-center bg-white no-gutters border rounded">
-                                <div class="col">
-                                    <ol class="o_portal_submenu breadcrumb mb-0 py-2 flex-grow-1">
-                                        <li class="breadcrumb-item" data-oe-model="ir.ui.view" data-oe-id="958" data-oe-field="arch" data-oe-xpath="/t[1]/ol[1]/li[1]">
-                                            <a href="/my/home" aria-label="Home" title="Home">
-                                                <i class="fa fa-home"></i>
-                                            </a>
-                                        </li>
-                                        <li class="breadcrumb-item ">
-                                            <a data-oe-model="ir.ui.view" data-oe-id="2096" data-oe-field="arch" data-oe-xpath="/data/xpath/li[1]/a[1]" t-attf-href="/my/home/{{ slug(tmp.instructor_id) }}">
-                                                Sessions
-                                            </a>
-                                        </li>
-                                        <li class="breadcrumb-item active">
-                                            #<span data-oe-model="openacademy.sessions"  data-oe-field="id" data-oe-type="integer" data-oe-expression="ticket.id" data-oe-readonly="1">
-                                                <t t-esc="tmp.id"/>
-                                            </span>
-                                        </li>
-                                    </ol>
-                                </div>
-                                <div class="col flex-grow-0">
-                                    <div class="record_pager btn-group" role="group">
-                                           <a data-oe-model="ir.ui.view" data-oe-id="2096" data-oe-field="arch" data-oe-xpath="/data/xpath/li[1]/a[1]" t-attf-href="/my/home/session/edit/{{slug(tmp)}}">
-                                               <span     class=" badge badge-pill badge-info">  Edit </span>
-                                           </a>
-                                    </div>
-                                </div>
-                                <div class="col flex-grow-0">
-                                    <div class="record_pager btn-group" role="group">
-                                        <a role="button" data-oe-model="ir.ui.view" data-oe-id="971" data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/div[1]/a[1]" class="btn btn-link disabled" href="#">
-                                            <i class="fa fa-chevron-left" role="img" aria-label="Previous" title="Previous"></i>
-                                        </a>
-                                        <a role="button" data-oe-model="ir.ui.view" data-oe-id="971" data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/div[1]/a[2]" class="btn btn-link " href="#">
-                                            <i class="fa fa-chevron-right" role="img" aria-label="Next" title="Next"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="wrap" class="o_portal_wrap">
-                            <div class="container mb64">
-                                <div class="card mt-0 border-top-0 rounded-0 rounded-bottom ">
-                                    <div class="card-header ">
-                                        <div class="row no-gutters">
-                                            <div class="col-md">
-                                                <h5 class="mb-1 mb-md-0">
-                                                    <span >
-                                                        <t t-esc="tmp.name"/>
-                                                    </span>
-                                                    <small class="text-muted">
-                                                        (#<span> <t t-esc="tmp.id"/></span>)
-                                                    </small>
-                                                </h5>
-                                            </div>
-                                            <div class="col-md text-md-right">
-                                                <small class="text-right" data-oe-model="ir.ui.view" data-oe-id="2099" data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/t[3]/t[1]/div[1]/div[2]/small[1]">
-                                                    Course:
-                                                </small>
-                                                <span     class=" badge badge-pill badge-info">
-                                                    <t t-esc="tmp.course_id.name"/>
-                                                </span>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <div class="card-body ">
-                                        <div class="row mb-4">
-                                            <strong class="col-lg-2" data-oe-model="ir.ui.view" data-oe-id="2099" data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/t[3]/t[2]/div[1]/strong[1]">
-                                                Number Of Seats :
-                                            </strong>
-                                            <span>
-                                                <t t-esc="tmp.seats"/>
-                                            </span>
-                                        </div>
-                                        <div class="row mb-4">
-                                            <strong class="col-lg-2" data-oe-model="ir.ui.view" data-oe-id="2099" data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/t[3]/t[2]/div[1]/strong[1]">
-                                                Start Date :
-                                            </strong>
-                                            <span >
-                                                <t t-esc="tmp.start_date"/>
-                                            </span>
-                                        </div>
-                                        <div class="row mb-4">
-                                            <strong class="col-lg-2" data-oe-model="ir.ui.view" data-oe-id="2099" data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/t[3]/t[2]/div[1]/strong[1]">
-                                                End Date :
-                                            </strong>
-                                            <span >
-                                                <t t-esc="tmp.end_date"/>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <br/>
-                                <br/>
-                                <br/>
-                                <br/>
-                            </div>
-                        </div>
+                    <t t-foreach="teachers" t-as="teacher">
+<!--                    <p><t t-esc="teacher.id"/> <t t-esc="teacher.name"/></p>-->
+                        <p><a t-attf-href="/openacademy/openacademy/{{ slug(teacher) }}">
+                          <t t-esc="teacher.name"/></a>
+                        </p>
                     </t>
                 </div>
             </div>
@@ -297,225 +26,32 @@
     </template>
 
 
-        <template id="sessionsEdit">
-        <t t-call="website.layout" >
+     <template id="biography">
+        <t t-call="website.layout">
             <t t-set="title">Academy</t>
-            <div class="oe_structure" style="background-color: #edf0f5;">
+            <div class="oe_structure"/>
+            <div class="oe_structure">
                 <div class="container">
-                    <br/>
-                    <t t-foreach="session" t-as="tmp">
-                        <form action="/my/home/session/edit/done/" method="POST">
-                        <div class="o_portal container mt-3">
-                            <div class="row align-items-center bg-white no-gutters border rounded">
-                                <div class="col">
-                                    <ol class="o_portal_submenu breadcrumb mb-0 py-2 flex-grow-1">
-                                        <li class="breadcrumb-item" data-oe-model="ir.ui.view" data-oe-id="958" data-oe-field="arch" data-oe-xpath="/t[1]/ol[1]/li[1]">
-                                            <a href="/my/home" aria-label="Home" title="Home">
-                                                <i class="fa fa-home"></i>
-                                            </a>
-                                        </li>
-                                        <li class="breadcrumb-item ">
-                                            <a data-oe-model="ir.ui.view" data-oe-id="2096" data-oe-field="arch" data-oe-xpath="/data/xpath/li[1]/a[1]" t-attf-href="/my/home/{{ slug(tmp.instructor_id) }}">
-                                                Sessions
-                                            </a>
-                                        </li>
-                                        <li class="breadcrumb-item active">
-                                            #<span data-oe-model="openacademy.sessions"  data-oe-field="id" data-oe-type="integer" data-oe-expression="ticket.id" data-oe-readonly="1">
-                                                <t t-esc="tmp.id"/>
-                                            </span>
-                                        </li>
-                                    </ol>
-                                </div>
-                                <div class="col flex-grow-0">
-                                    <div class="record_pager btn-group" role="group">
-                                       <a data-oe-model="ir.ui.view" data-oe-id="2096" data-oe-field="arch" data-oe-xpath="/data/xpath/li[1]/a[1]"   >
-                                           <button  type="submit" class=" badge badge-pill badge-info"  >  <span > Valider</span></button>
-                                       </a>
-                                    </div>
-                                </div>
-                                <div class="col flex-grow-0">
-                                    <div class="record_pager btn-group" role="group">
-                                        <a role="button" data-oe-model="ir.ui.view" data-oe-id="971" data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/div[1]/a[1]" class="btn btn-link disabled" href="#">
-                                            <i class="fa fa-chevron-left" role="img" aria-label="Previous" title="Previous"></i>
-                                        </a>
-                                        <a role="button" data-oe-model="ir.ui.view" data-oe-id="971" data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/div[1]/a[2]" class="btn btn-link " href="#">
-                                            <i class="fa fa-chevron-right" role="img" aria-label="Next" title="Next"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="wrap" class="o_portal_wrap">
-                            <div class="container mb64">
-                                <div class="card mt-0 border-top-0 rounded-0 rounded-bottom ">
-                                    <div class="card-header ">
-                                        <div class="row no-gutters">
-                                            <div class="col-md">
-                                                <h5 class="mb-1 mb-md-0">
-                                                    <span >
-                                                        <t t-esc="tmp.name"/>
-                                                    </span>
-                                                    <small class="text-muted">
-                                                        (#<span> <t t-esc="tmp.id"/></span>)
-                                                    </small>
-                                                </h5>
-                                            </div>
-                                            <div class="col-md text-md-right">
-                                                <small class="text-right" data-oe-model="ir.ui.view" data-oe-id="2099" data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/t[3]/t[1]/div[1]/div[2]/small[1]">
-                                                    Course:
-                                                </small>
-                                                <span     class=" badge badge-pill badge-info">
-                                                    <t t-esc="tmp.course_id.name"/>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card-body ">
-                                        <div class="row mb-4">
-                                            <strong class="col-lg-2" data-oe-model="ir.ui.view" data-oe-id="2099" data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/t[3]/t[2]/div[1]/strong[1]">
-                                                Number Of Seats :
-                                            </strong>
-                                             <input type="text"  name="seats" id="seats" t-att-value="tmp.seats">
-                                            </input>
-                                        </div>
-                                        <div class="row mb-4">
-                                            <strong class="col-lg-2" data-oe-model="ir.ui.view" data-oe-id="2099" data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/t[3]/t[2]/div[1]/strong[1]">
-                                                Start Date :
-                                            </strong>
-                                            <input type="date" name="StartDate" id="StartDate"  t-att-value="tmp.start_date">
-                                            </input>
-                                        </div>
-                                        <div class="row mb-4">
-                                            <strong class="col-lg-2" data-oe-model="ir.ui.view" data-oe-id="2099" data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/t[3]/t[2]/div[1]/strong[1]">
-                                                End Date :
-                                            </strong>
-                                            <input type="date" name="EndDate" id="EndDate" t-att-value="tmp.end_date">
-                                            </input>
-                                        </div>
-                                    </div>
-                                </div>
-                                <br/>
-                                <br/>
-                                <br/>
-                                <br/>
-                            </div>
-                        </div>
-                            <input type="hidden" name="SessId" id="SessId" t-att-value="tmp.id"></input>
-                            <input type="hidden" name="InstId" id="InstId" t-att-value="tmp.instructor_id.id"></input>
-                        </form>
-                    </t>
+<!--                    <p>-->
+<!--                        <t t-esc="person.id"/>-->
+<!--                        <t t-esc="person.name"/>-->
+<!--                        <div>-->
+<!--                            <t t-esc="person.biography"/>-->
+<!--                        </div>-->
+<!--                    </p>-->
+<!--                t-field allows editing the field content from the website using field-specific interfaces.-->
+                    <h3 t-field="person.name"/>
+                    <p>Last modified: <i t-field="person.write_date" t-options='{"format": "long"}'/></p>
+<!--                    <p>Last modified: <i t-field="person.write_date" t-options='{"widget": "relative"}'/></p>-->
+                    <div t-field="person.biography"/>
                 </div>
             </div>
+            <div class="oe_structure"/>
         </t>
-    </template>
+     </template>
 
-    <template id="sessionsAdd">
-        <t t-call="website.layout" >
-            <t t-set="title">Academy</t>
-            <div class="oe_structure" style="background-color: #edf0f5;">
-                <div class="container">
-                    <br/>
-                        <form action="/my/home/session/add/done/" method="POST">
-                         <div class="o_portal container mt-3">
-                            <div class="row align-items-center bg-white no-gutters border rounded">
-                                <div class="col">
-                                    <ol class="o_portal_submenu breadcrumb mb-0 py-2 flex-grow-1">
-                                        <li class="breadcrumb-item" data-oe-model="ir.ui.view" data-oe-id="958" data-oe-field="arch" data-oe-xpath="/t[1]/ol[1]/li[1]">
-                                            <a href="/my/home" aria-label="Home" title="Home">
-                                                <i class="fa fa-home"></i>
-                                            </a>
-                                        </li>
-                                        <li class="breadcrumb-item ">
-                                            <a data-oe-model="ir.ui.view" data-oe-id="2096" data-oe-field="arch" data-oe-xpath="/data/xpath/li[1]/a[1]" t-attf-href="/my/home/{{ instructor.id }}">
-                                                Sessions
-                                            </a>
-                                        </li>
-                                    </ol>
-                                </div>
-                                <div class="col flex-grow-0">
-                                    <div class="record_pager btn-group" role="group">
-                                       <a data-oe-model="ir.ui.view" data-oe-id="2096" data-oe-field="arch" data-oe-xpath="/data/xpath/li[1]/a[1]"   >
-                                           <button  type="submit" class=" badge badge-pill badge-info"  >  <span > VALIDER</span></button>
-                                       </a>
-                                    </div>
-                                </div>
-                                <div class="col flex-grow-0">
-                                    <div class="record_pager btn-group" role="group">
-                                        <a role="button" data-oe-model="ir.ui.view" data-oe-id="971" data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/div[1]/a[1]" class="btn btn-link disabled" href="#">
-                                            <i class="fa fa-chevron-left" role="img" aria-label="Previous" title="Previous"></i>
-                                        </a>
-                                        <a role="button" data-oe-model="ir.ui.view" data-oe-id="971" data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/div[1]/a[2]" class="btn btn-link " href="#">
-                                            <i class="fa fa-chevron-right" role="img" aria-label="Next" title="Next"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="wrap" class="o_portal_wrap">
-                            <div class="container mb64">
-                                <div class="card mt-0 border-top-0 rounded-0 rounded-bottom ">
-                                    <div class="card-header ">
-                                        <div class="row no-gutters">
-                                            <div class="col-md">
-                                            </div>
-                                            <div class="col-md text-md-right">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card-body ">
-                                        <div class="row mb-4">
-                                            <strong class="col-lg-2" data-oe-model="ir.ui.view" data-oe-id="2099" data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/t[3]/t[2]/div[1]/strong[1]">
-                                                Session's Name :
-                                            </strong>
-                                            <input type="text" name="name" id="name"  >
-                                            </input>
-                                        </div>
-                                        <div class="row mb-4">
-                                            <strong class="col-lg-2" data-oe-model="ir.ui.view" data-oe-id="2099" data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/t[3]/t[2]/div[1]/strong[1]">
-                                                Number Of Seats :
-                                            </strong>
-                                             <input type="text"  name="seats" id="seats" >
-                                            </input>
-                                        </div>
-                                        <div class="row mb-4">
-                                            <strong class="col-lg-2" data-oe-model="ir.ui.view" data-oe-id="2099" data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/t[3]/t[2]/div[1]/strong[1]">
-                                                Start Date :
-                                            </strong>
-                                            <input type="date" name="StartDate" id="StartDate"  >
-                                            </input>
-                                        </div>
-                                        <div class="row mb-4">
-                                            <strong class="col-lg-2" data-oe-model="ir.ui.view" data-oe-id="2099" data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/t[3]/t[2]/div[1]/strong[1]">
-                                                End Date :
-                                            </strong>
-                                            <input type="date" name="EndDate" id="EndDate" >
-                                            </input>
-                                        </div>
-                                        <div class="row mb-4">
-                                            <strong class="col-lg-2" data-oe-model="ir.ui.view" data-oe-id="2099" data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/t[3]/t[2]/div[1]/strong[1]">
-                                                Course :
-                                            </strong>
-                                                <select id="CourseId" name="CourseId">
-                                                    <t t-foreach="courses" t-as="tmp2">
-                                                        <option t-att-value="tmp2.id"><t t-esc="tmp2.name"/></option>
-                                                    </t>
-                                                </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <br/>
-                                <br/>
-                                <br/>
-                                <br/>
-                            </div>
-                        </div>
-                            <t t-foreach="instructor" t-as="tmp">
-                                <input type="hidden" name="InstId" id="InstId" t-att-value="tmp.id"></input>
-                            </t>
-                        </form>
-                </div>
-            </div>
-        </t>
-    </template>
+
+
+
 
 </odoo>
