@@ -7,7 +7,7 @@ class Course(models.Model):
     _name = 'openacademy.course'
     _description = "OpenAcademy Courses"
     _inherit = 'mail.thread'
-    _inherit = 'product.template'
+
 
 
     name = fields.Char(string="Title", required=True)

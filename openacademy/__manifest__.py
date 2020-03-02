@@ -19,7 +19,7 @@
     'application': "True",
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'board', 'website''website_sale'],
+    'depends': ['base', 'board', 'website', 'website_sale', 'portal',   'account', ],
 
     # always loaded
     'data': [

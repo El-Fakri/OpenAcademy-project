@@ -21,11 +21,24 @@
             <field name="model">openacademy.session</field>
             <field name="arch" type="xml">
                 <form string="Session Form">
+                   <header>
+<!--                        <button string="Génerer Une Facture" class="oe_highlight" name="generer_facture" type="object" attrs="{'invisible': ['|',('nbr_of_invoices', '!=', 0), ('state', '!=', 'confirmed')]}"></button>-->
+                        <button string="Génerer Une Facture" class="oe_highlight" name="generer_facture" type="object" attrs="{'invisible': [('state', '!=', 'confirmed')]}"></button>
+                        <button name="goto_draft" type="object" string="Reset" states="progress,confirmed"/>
+                        <button name="goto_confirm" type="object" string="Confirm Session" states="draft" class="oe_highlight"/>
+                        <button name="goto_done" type="object" string="Validate" states="progress" class="oe_highlight"/>
+                        <field name="state" widget="statusbar"/>
+                   </header>
                     <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="view_invoice" type="object" class="oe_stat_button" icon="fa-pencil-square-o">
+                                <field name="nbr_of_invoices" widget="statinfo" string="Invoices"/>
+                            </button>
+                        </div>
                        <group string="General">
                                 <field name="course_id"/>
                                 <field name="name"/>
-                                <field name="instructor_id"/>
+                                <field name="instructor_id" />
                                 <field name="active"/>
                        </group>
                        <group string="Schedule">
@@ -33,6 +46,8 @@
                                 <field name="duration"/>
                                 <field name="seats"/>
                                 <field name="taken_seats" widget="progressbar"/>
+                                <field name="price_for_one_hour"/>
+                                <field name="total_price"/>
                        </group>
                         <label for="attendee_ids"/>
                         <field name="attendee_ids"/>

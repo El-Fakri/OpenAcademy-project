@@ -7,11 +7,12 @@
             <field name="model">res.partner</field>
             <field name="inherit_id" ref="base.view_partner_form"/>
             <field name="arch" type="xml">
-<!--         ici on ajoute 'inside' notebook de la view base.view_partner_form un page "Sessions"-->
+<!--         ici on ajoute 'inside' notebook de la view base.view_partner_form un notebook,page "Sessions"-->
                 <notebook position="inside">
                     <page string="Sessions">
                         <group>
-                            <field name="instructor"/>
+                            <field name="instructor" />
+                            <field name="sessions" />
                             <field name="session_ids"/>
                         </group>
                     </page>

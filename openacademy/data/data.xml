@@ -1,6 +1,24 @@
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<odoo>-->
+<!--   <data>-->
+<!--      <record model="product.product" id="hotels_be_bago.product1">-->
+<!--         <field name="name">Valencia Product</field>-->
+<!--         <field name="type">service</field>-->
+<!--         <field name="purchase_line_warn">1</field>-->
+<!--         <field name="sale_line_warn">no-message</field>-->
+<!--      </record>-->
+
+<!--   </data>-->
+<!--</odoo>-->
+
 <odoo>
-  <record model="product.public.category" id="category_courses">
-    <field name="name">Courses</field>
-    <field name="parent_id" ref="website_sale.categ_others"/>
-  </record>
+   <data>
+      <record model="product.product" id="session_product">
+         <field name="name">Session</field>
+         <field name="type">service</field>
+         <field name="purchase_line_warn">warning</field>
+         <field name="sale_line_warn">no-message</field>
+      </record>
+
+   </data>
 </odoo>
