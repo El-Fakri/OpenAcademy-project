@@ -7,6 +7,20 @@
             <field name="model">res.partner</field>
             <field name="inherit_id" ref="base.view_partner_form"/>
             <field name="arch" type="xml">
+                <xpath expr="//form//sheet" position="before">
+                 <header>
+                     <button string="Génerer et Telecharger la Facture" class="oe_highlight" name="generer_facture" type="object" attrs="{'invisible': [('instructor', '=', True)]}" ></button>
+                     <button string="Telecharger la Facture des Sessions" name="print_invoices" type="object" attrs="{'invisible': [('instructor', '=', True)]}"/>
+                 </header>
+                </xpath>
+                <div class="oe_button_box" name="button_box">
+                    <button name="view_invoice" type="object" class="oe_stat_button" icon="fa-pencil-square-o">
+                        <field name="nbr_of_invoices" widget="statinfo" string="Invoices"/>
+                    </button>
+                </div>
+<!--                <xpath expr="//div[@name='buttons']" position="inside">-->
+<!--                <button name="pick_one" class="oe_inline oe_stat_button" type="object" style="background:rgba(46, 210, 162,0.2);" string="- 1" icon="fa-sign-out" attrs="{'invisible':['|',('type', '=', 'service')]}"/>-->
+<!--                </xpath>-->
 <!--         ici on ajoute 'inside' notebook de la view base.view_partner_form un notebook,page "Sessions"-->
                 <notebook position="inside">
                     <page string="Sessions">

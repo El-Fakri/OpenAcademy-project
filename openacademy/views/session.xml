@@ -24,7 +24,7 @@
                    <header>
 <!--                        <button string="Génerer Une Facture" class="oe_highlight" name="generer_facture" type="object" attrs="{'invisible': ['|',('nbr_of_invoices', '!=', 0), ('state', '!=', 'confirmed')]}"></button>-->
                         <button string="Génerer Une Facture" class="oe_highlight" name="generer_facture" type="object" attrs="{'invisible': [('state', '!=', 'confirmed')]}"></button>
-                        <button name="goto_draft" type="object" string="Reset" states="progress,confirmed"/>
+                        <button name="goto_draft" type="object" string="Reset" states="progress,confirmed,facturee"/>
                         <button name="goto_confirm" type="object" string="Confirm Session" states="draft" class="oe_highlight"/>
                         <button name="goto_done" type="object" string="Validate" states="progress" class="oe_highlight"/>
                         <field name="state" widget="statusbar"/>

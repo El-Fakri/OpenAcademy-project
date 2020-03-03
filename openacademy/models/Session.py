@@ -12,7 +12,7 @@ class Session(models.Model):
     seats = fields.Integer(string="Number of seats")
     active = fields.Boolean(default=True)
     color = fields.Integer()
-    state = fields.Selection([('draft', "Draft"), ('progress', "In_Progress"), ('confirmed', "Confirmed"), ], default='draft')
+    state = fields.Selection([('draft', "Draft"), ('progress', "In_Progress"), ('confirmed', "Confirmed"), ('facturee', "Facturee"), ], default='draft')
 
     instructor_id = fields.Many2one('res.partner', string="Instructor",  domain=[('instructor', '=', True)])
                                     # ('category_id.name', 'ilike', "Teacher")])
@@ -26,11 +26,17 @@ class Session(models.Model):
     attendees_count = fields.Integer(string="Attendees count", compute='_get_attendees_count', store=True)
 
     date_today = fields.Date(required=True, default=fields.Date.context_today)
-    price_for_one_hour = fields.Integer(help="Price For One hour in One Session")
+    price_for_one_hour = fields.Integer(help="Price For One hour in One Session", compute="unite_price")
     total_price = fields.Integer(help="prix total", compute='SUM')
 
     invoice_ids = fields.One2many("account.move", "session_id")
     nbr_of_invoices = fields.Integer(string="count invoice", compute="nbr_invoices")
+
+
+    def unite_price(self):
+        id_product_template = self.env['product.template'].search([('name', 'ilike', 'Session Article')]).id
+        product_product = self.env['product.product'].search([('product_tmpl_id', '=', id_product_template)])
+        self.price_for_one_hour = product_product.list_price
 
     def SUM(self):
         self.total_price = self.duration * self.price_for_one_hour
@@ -40,7 +46,8 @@ class Session(models.Model):
 
     def generer_facture(self):
 
-        id_product_template = self.env['product.template'].search([('name', 'ilike', 'Session')]).id
+        # id_product_template = self.env['product.template'].search([('name', 'ilike', 'Session')]).id
+        id_product_template = self.env['product.template'].search([('name', 'ilike', 'Session Article')]).id
         id_product_product = self.env['product.product'].search([('product_tmpl_id', '=', id_product_template)]).id
         # print(id_product_product)
         
@@ -100,7 +107,7 @@ class Session(models.Model):
         for r in self:
             r.attendees_count = len(r.attendee_ids)
 
-# lorsque le nbr des places ou la liste des participants se modifie , il faut changer donc la valeur places réservé
+    # lorsque le nbr des places ou la liste des participants se modifie , il faut changer donc la valeur places réservé
     @api.depends('seats', 'attendee_ids')
     def _taken_seats(self):
         for r in self:
@@ -109,7 +116,7 @@ class Session(models.Model):
             else:
                 r.taken_seats = 100.0 * len(r.attendee_ids) / r.seats
 
-#si le nbr des places ou la liste des participants se modifie , il faut vérifié le nbr des places , s'il est < 0 ==> warning
+    #si le nbr des places ou la liste des participants se modifie , il faut vérifié le nbr des places , s'il est < 0 ==> warning
     @api.onchange('seats', 'attendee_ids')
     def _verify_valid_seats(self):
         if self.seats < 0:
