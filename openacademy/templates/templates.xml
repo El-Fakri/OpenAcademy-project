@@ -18,7 +18,7 @@
                                                 <h3 data-oe-model="ir.ui.view" data-oe-id="962" data-oe-field="arch" data-oe-xpath="/t[1]/t[1]/div[1]/h3[1]">Documents</h3>
                                                 <div class="o_portal_docs list-group">
                                                     <a class="list-group-item list-group-item-action d-flex align-items-center justify-content-between" t-attf-href="/my/home/{{ slugg }}" title="Sessions">
-                                                        Sessions
+                                                        Mes Sessions
                                                     <span class="badge badge-secondary badge-pill"> <t t-esc="nbr_sess"/></span>
                                                     </a>
                                                     <!--                                        </t>-->
