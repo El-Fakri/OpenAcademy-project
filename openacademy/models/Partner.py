@@ -12,6 +12,11 @@ class Partner(models.Model):
     num_sessions = fields.Integer(string='nbr_of_sessions', compute='comp_sess')
     nbr_of_invoices = fields.Integer(string="count invoice", compute="nbr_invoices")
     id_of_latest_invoice = fields.Integer(string='id_of_latest_invoice')
+    session_facturee = []
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.session_facturee = []
 
 
     def nbr_invoices(self):
@@ -38,19 +43,36 @@ class Partner(models.Model):
 
         for session in self.session_ids:
 
-            if session.state == "facturee":
+            if session.id in self.session_facturee:
                 continue
 
             if session.state == "confirmed":
                 test = test + 1
                 quantity = quantity + session.duration
-                session.state = "facturee"
+                self.session_facturee.append(session.id)
+                print(self.session_facturee)
                 # print(quantity)
             unit_price = session.price_for_one_hour
 
         if test == 0:
             print("No Session to put Invoice For this Costumer")
             raise exceptions.ValidationError("No Session to put Invoice For this Costumer")
+
+        # for session in self.session_ids:
+        #
+        #     if session.state == "facturee":
+        #         continue
+        #
+        #     if session.state == "confirmed":
+        #         test = test + 1
+        #         quantity = quantity + session.duration
+        #         session.state = "facturee"
+        #         # print(quantity)
+        #     unit_price = session.price_for_one_hour
+        #
+        # if test == 0:
+        #     print("No Session to put Invoice For this Costumer")
+        #     raise exceptions.ValidationError("No Session to put Invoice For this Costumer")
             # return {
             #     'warning': {
             #         'title': "No Session",

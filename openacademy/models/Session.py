@@ -12,7 +12,8 @@ class Session(models.Model):
     seats = fields.Integer(string="Number of seats")
     active = fields.Boolean(default=True)
     color = fields.Integer()
-    state = fields.Selection([('draft', "Draft"), ('progress', "In_Progress"), ('confirmed', "Confirmed"), ('facturee', "Facturee"), ], default='draft')
+    # state = fields.Selection([('draft', "Draft"), ('progress', "In_Progress"), ('confirmed', "Confirmed"), ('facturee', "Facturee"), ], default='draft')
+    state = fields.Selection([('draft', "Draft"), ('progress', "In_Progress"), ('confirmed', "Confirmed"), ], default='draft')
 
     instructor_id = fields.Many2one('res.partner', string="Instructor",  domain=[('instructor', '=', True)])
                                     # ('category_id.name', 'ilike', "Teacher")])
