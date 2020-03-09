@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 from odoo import fields, models, exceptions,_
 from odoo.tools.misc import formatLang, format_date, get_lang
+import base64
+import csv
+from io import StringIO
 
 
 class Partner(models.Model):
@@ -17,7 +20,6 @@ class Partner(models.Model):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.session_facturee = []
-
 
     def nbr_invoices(self):
         self.nbr_of_invoices = self.env['account.move'].search_count([('partner_id', '=', self.id)])
@@ -110,6 +112,7 @@ class Partner(models.Model):
         return action
 
     def print_invoices(self):
-
         invoice = self.env['account.move'].search([('id', '=', self.id_of_latest_invoice)])
+        print(invoice.id)
+        print(self.id)
         return self.env.ref('account.account_invoices').report_action(invoice)

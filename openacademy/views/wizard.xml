@@ -22,6 +22,30 @@
             </field>
         </record>
 
+        <record model="ir.ui.view" id="wizard_form_view_invoice">
+            <field name="name">import.form</field>
+            <field name="model">openacademy.import</field>
+            <field name="arch" type="xml">
+                <form string="Import Invoice">
+                    <group>
+                          <field name="File" filename="name"/>
+                    </group>
+                    <footer>
+                      <button string="Import" name="import_file"
+							type="object" class="oe_highlight" />
+                      <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+    <!--action for wizard -->
+        <act_window id="launch_session_wizard_import_invoice"
+                    name="Import Invoice"
+                    binding_model="account.move"
+                    res_model="openacademy.import"
+                    view_mode="form"
+                    target="new"/>
+
         <!-- window action -->
         <act_window id="launch_session_wizard"
                     name="Add Attendees"
